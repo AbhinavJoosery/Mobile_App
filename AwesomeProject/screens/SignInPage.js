@@ -11,6 +11,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {useState} from 'react';
 import {signInAction} from '../redux/signup';
+import Colours from '../Colours';
 
 function SignInPage({navigation}) {
   const emailList = useSelector(state => state.counter.email);
@@ -66,14 +67,14 @@ function SignInPage({navigation}) {
       </View>
 
       <View style={styles.btnContainer}>
-        <Button title="Sign In" onPress={signInHandler} color="#ec0f80" />
+        <Button title="Sign In" onPress={signInHandler} color={Colours.pink} />
       </View>
 
       <View style={styles.btnContainer}>
         <Button
           title="Sign Up"
           onPress={() => navigation.navigate('Sign Up')}
-          color="#9932CC"
+          color={Colours.purpleSecondary}
         />
       </View>
     </View>
@@ -87,11 +88,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#311b6b',
+    backgroundColor: Colours.purple,
   },
 
   appTitle: {
-    color: 'white',
+    color: Colours.white,
     fontSize: 25,
     marginBottom: 50,
   },
@@ -102,13 +103,13 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    borderColor: '#e4d0ff',
+    borderColor: Colours.grey,
     borderWidth: 1,
     borderRadius: 10,
     width: '100%',
     padding: 20,
-    color: '#120438',
-    backgroundColor: '#e4d0ff',
+    color: Colours.darkBlue,
+    backgroundColor: Colours.grey,
   },
 
   btnContainer: {

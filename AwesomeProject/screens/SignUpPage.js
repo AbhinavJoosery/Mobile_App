@@ -8,6 +8,8 @@ import {
   ScrollView,
 } from 'react-native';
 
+import Colours from '../Colours';
+
 import {useDispatch} from 'react-redux';
 import {signUpAction} from '../redux/signup';
 import {useState} from 'react';
@@ -103,7 +105,11 @@ function SignUpPage({navigation}) {
         </View>
 
         <View style={styles.btnContainer}>
-          <Button title="Sign Up" onPress={signUpHandler} color="#9932CC" />
+          <Button
+            title="Sign Up"
+            onPress={signUpHandler}
+            color={Colours.purpleSecondary}
+          />
         </View>
       </View>
     </ScrollView>
@@ -117,11 +123,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#311b6b',
+    backgroundColor: Colours.purple,
   },
 
   pageTitle: {
-    color: 'white',
+    color: Colours.white,
     fontSize: 25,
     marginBottom: 50,
     textAlign: 'center',
@@ -133,13 +139,13 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    borderColor: '#e4d0ff',
+    borderColor: Colours.grey,
     borderWidth: 1,
     borderRadius: 10,
     width: '100%',
     padding: 20,
-    color: '#120438',
-    backgroundColor: '#e4d0ff',
+    color: Colours.darkBlue,
+    backgroundColor: Colours.grey,
   },
 
   btnContainer: {

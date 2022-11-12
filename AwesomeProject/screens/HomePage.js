@@ -1,6 +1,6 @@
 import {StyleSheet, View, StatusBar, Text, Button, Alert} from 'react-native';
-
 import {useSelector} from 'react-redux';
+import Colours from '../Colours';
 
 function HomePage({navigation}) {
   const user_id = useSelector(state => state.counter.user_id);
@@ -27,7 +27,11 @@ function HomePage({navigation}) {
       <Text style={styles.infoText}>email: {email}</Text>
 
       <View style={styles.btnContainer}>
-        <Button title="Sign Out" onPress={signOutHandler} color="#ec0f80" />
+        <Button
+          title="Sign Out"
+          onPress={signOutHandler}
+          color={Colours.pink}
+        />
       </View>
     </View>
   );
@@ -40,23 +44,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#311b6b',
+    backgroundColor: Colours.purple,
   },
 
   pageTitle: {
-    color: 'white',
+    color: Colours.white,
     fontSize: 25,
     marginBottom: 70,
   },
 
   detailsTitle: {
-    color: 'white',
+    color: Colours.white,
     fontSize: 20,
     marginBottom: 55,
   },
 
   infoText: {
-    color: 'white',
+    color: Colours.white,
     fontSize: 15,
     marginBottom: 10,
   },
