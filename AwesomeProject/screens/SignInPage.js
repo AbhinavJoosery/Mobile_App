@@ -27,7 +27,6 @@ function SignInPage({navigation}) {
     const userIndex = emailList.indexOf(getEmail);
     if (userIndex >= 0 && passwordList[userIndex] == getPassword) {
       dispatch(signInAction(userIndex));
-
       navigation.navigate('Homepage');
     } else {
       Alert.alert('Log IN ERROR', 'Incorrect email or password', [

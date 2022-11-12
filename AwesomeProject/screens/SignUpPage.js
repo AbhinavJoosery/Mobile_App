@@ -5,6 +5,7 @@ import {
   Text,
   Button,
   ScrollView,
+  Alert,
 } from 'react-native';
 
 import Colours from '../Colours';
@@ -43,16 +44,28 @@ function SignUpPage({navigation}) {
   };
 
   const signUpHandler = () => {
-    dispatch(
-      signUpAction([
-        getFirstName,
-        getLastName,
-        getUserName,
-        getEmail,
-        getPassword,
-      ]),
-    );
-    navigation.navigate('Sign In');
+    if (
+      getFirstName.length > 0 &&
+      getLastName.length > 0 &&
+      getUserName.length > 0 &&
+      getEmail.length > 0 &&
+      getPassword.length > 0
+    ) {
+      dispatch(
+        signUpAction([
+          getFirstName,
+          getLastName,
+          getUserName,
+          getEmail,
+          getPassword,
+        ]),
+      );
+      navigation.navigate('Sign In');
+    } else {
+      Alert.alert('Sign up ERROR', 'Please fill out all fields', [
+        {text: 'OK', onPress: () => console.log('')},
+      ]);
+    }
   };
 
   return (
