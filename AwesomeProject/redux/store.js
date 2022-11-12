@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
-import counterReducer from '../redux/signup';
+import registerReducer from '../redux/signup';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    register: registerReducer,
   },
 });

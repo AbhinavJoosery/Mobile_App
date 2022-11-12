@@ -14,8 +14,8 @@ import {signInAction} from '../redux/signup';
 import Colours from '../Colours';
 
 function SignInPage({navigation}) {
-  const emailList = useSelector(state => state.counter.email);
-  const passwordList = useSelector(state => state.counter.password);
+  const emailList = useSelector(state => state.register.email);
+  const passwordList = useSelector(state => state.register.password);
 
   const dispatch = useDispatch(); //   dispatch is used to call action from reducer
 

@@ -3,11 +3,11 @@ import {useSelector} from 'react-redux';
 import Colours from '../Colours';
 
 function HomePage({navigation}) {
-  const user_id = useSelector(state => state.counter.user_id);
-  const firstname = useSelector(state => state.counter.firstName[user_id]);
-  const lastname = useSelector(state => state.counter.lastName[user_id]);
-  const username = useSelector(state => state.counter.userName[user_id]);
-  const email = useSelector(state => state.counter.email[user_id]);
+  const user_id = useSelector(state => state.register.user_id);
+  const firstname = useSelector(state => state.register.firstName[user_id]);
+  const lastname = useSelector(state => state.register.lastName[user_id]);
+  const username = useSelector(state => state.register.userName[user_id]);
+  const email = useSelector(state => state.register.email[user_id]);
 
   function signOutHandler() {
     Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
@@ -16,15 +16,15 @@ function HomePage({navigation}) {
     ]);
   }
 
-  // counter is the name of the reducer in redux/store.js
+  // register is the name of the reducer in redux/store.js
   // firstname is the property of that reducer found in redux/signup.js
   return (
     <View style={styles.container}>
       <Text style={styles.pageTitle}>Welcome back {username}</Text>
       <Text style={styles.detailsTitle}>Your details are as follows: </Text>
-      <Text style={styles.infoText}>firstName: {firstname}</Text>
-      <Text style={styles.infoText}>lastName: {lastname}</Text>
-      <Text style={styles.infoText}>email: {email}</Text>
+      <Text style={styles.infoText}>First Name: {firstname}</Text>
+      <Text style={styles.infoText}>Last Name: {lastname}</Text>
+      <Text style={styles.infoText}>Email Address: {email}</Text>
 
       <View style={styles.btnContainer}>
         <Button
