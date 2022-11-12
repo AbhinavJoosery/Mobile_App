@@ -20,7 +20,7 @@ function HomePage({navigation}) {
   // firstname is the property of that reducer found in redux/signup.js
   return (
     <View style={styles.container}>
-      <Text style={styles.pageTitle}>Welcome back {username}</Text>
+      <Text style={styles.pageTitle}>Welcome to Lorem Ipsum {username}</Text>
       <Text style={styles.detailsTitle}>Your details are as follows: </Text>
       <Text style={styles.infoText}>First Name: {firstname}</Text>
       <Text style={styles.infoText}>Last Name: {lastname}</Text>
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     color: Colours.white,
     fontSize: 25,
     marginBottom: 70,
+    textAlign: 'center',
   },
 
   detailsTitle: {

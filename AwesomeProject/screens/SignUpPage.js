@@ -3,13 +3,12 @@ import {
   View,
   StatusBar,
   Text,
-  TextInput,
   Button,
   ScrollView,
 } from 'react-native';
 
 import Colours from '../Colours';
-
+import TxtInput from '../components/TxtInput';
 import {useDispatch} from 'react-redux';
 import {signUpAction} from '../redux/signup';
 import {useState} from 'react';
@@ -61,48 +60,36 @@ function SignUpPage({navigation}) {
       <View style={styles.container}>
         <Text style={styles.pageTitle}>Create your Lorem Ipsum Account</Text>
 
-        <View style={styles.textInputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="First Name"
-            onChangeText={firstNameInputHandler}
-          />
-        </View>
+        <TxtInput
+          placeholderLabel={'First Name'}
+          inputHandler={firstNameInputHandler}
+          contentType={'givenName'}
+        />
 
-        <View style={styles.textInputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Last Name"
-            onChangeText={lastNameInputHandler}
-          />
-        </View>
+        <TxtInput
+          placeholderLabel={'Last Name'}
+          inputHandler={lastNameInputHandler}
+          contentType={'familyName'}
+        />
 
-        <View style={styles.textInputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Username"
-            onChangeText={userNameInputHandler}
-          />
-        </View>
+        <TxtInput
+          placeholderLabel={'User Name'}
+          inputHandler={userNameInputHandler}
+          contentType={'username'}
+        />
 
-        <View style={styles.textInputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Email"
-            textContentType="emailAddress"
-            onChangeText={emailInputHandler}
-          />
-        </View>
+        <TxtInput
+          placeholderLabel={'Email'}
+          inputHandler={emailInputHandler}
+          contentType={'emailAddress'}
+        />
 
-        <View style={styles.textInputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Password"
-            textContentType="password"
-            secureTextEntry={true}
-            onChangeText={passwordInputHandler}
-          />
-        </View>
+        <TxtInput
+          placeholderLabel={'password'}
+          inputHandler={passwordInputHandler}
+          contentType={'password'}
+          secureEntry={true}
+        />
 
         <View style={styles.btnContainer}>
           <Button
@@ -131,21 +118,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginBottom: 50,
     textAlign: 'center',
-  },
-
-  textInputContainer: {
-    width: '80%',
-    marginBottom: 20,
-  },
-
-  textInput: {
-    borderColor: Colours.grey,
-    borderWidth: 1,
-    borderRadius: 10,
-    width: '100%',
-    padding: 20,
-    color: Colours.darkBlue,
-    backgroundColor: Colours.grey,
   },
 
   btnContainer: {

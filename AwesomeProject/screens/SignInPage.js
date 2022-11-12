@@ -1,17 +1,10 @@
-import {
-  StyleSheet,
-  View,
-  StatusBar,
-  Text,
-  TextInput,
-  Button,
-  Alert,
-} from 'react-native';
+import {StyleSheet, View, StatusBar, Text, Button, Alert} from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {useState} from 'react';
 import {signInAction} from '../redux/signup';
 import Colours from '../Colours';
+import TxtInput from '../components/TxtInput';
 
 function SignInPage({navigation}) {
   const emailList = useSelector(state => state.register.email);
@@ -47,24 +40,18 @@ function SignInPage({navigation}) {
     <View style={styles.container}>
       <Text style={styles.appTitle}>Welcome To Lorem Ipsum</Text>
 
-      <View style={styles.textInputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Email"
-          textContentType="emailAddress"
-          onChangeText={emailInputHandler}
-        />
-      </View>
+      <TxtInput
+        placeholderLabel={'Email'}
+        contentType={'emailAddress'}
+        inputHandler={emailInputHandler}
+      />
 
-      <View style={styles.textInputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Password"
-          textContentType="password"
-          secureTextEntry={true}
-          onChangeText={passwordInputHandler}
-        />
-      </View>
+      <TxtInput
+        placeholderLabel={'password'}
+        contentType={'password'}
+        secureEntry={true}
+        inputHandler={passwordInputHandler}
+      />
 
       <View style={styles.btnContainer}>
         <Button title="Sign In" onPress={signInHandler} color={Colours.pink} />
@@ -95,21 +82,6 @@ const styles = StyleSheet.create({
     color: Colours.white,
     fontSize: 25,
     marginBottom: 50,
-  },
-
-  textInputContainer: {
-    width: '80%',
-    marginBottom: 40,
-  },
-
-  textInput: {
-    borderColor: Colours.grey,
-    borderWidth: 1,
-    borderRadius: 10,
-    width: '100%',
-    padding: 20,
-    color: Colours.darkBlue,
-    backgroundColor: Colours.grey,
   },
 
   btnContainer: {
