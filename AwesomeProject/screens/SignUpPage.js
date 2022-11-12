@@ -8,22 +8,79 @@ import {
   ScrollView,
 } from 'react-native';
 
-function SignUpPage() {
+import {useDispatch} from 'react-redux';
+import {signUpAction} from '../redux/signup';
+import {useState} from 'react';
+
+function SignUpPage({navigation}) {
+  const dispatch = useDispatch(); //   dispatch is used to call action from reducer
+
+  const [getFirstName, setFirstName] = useState('');
+  const [getLastName, setLastName] = useState('');
+  const [getUserName, setUserName] = useState('');
+  const [getEmail, setEmail] = useState('');
+  const [getPassword, setPassword] = useState('');
+
+  const firstNameInputHandler = inputText => {
+    setFirstName(inputText);
+  };
+
+  const lastNameInputHandler = inputText => {
+    setLastName(inputText);
+  };
+
+  const userNameInputHandler = inputText => {
+    setUserName(inputText);
+  };
+
+  const emailInputHandler = inputText => {
+    setEmail(inputText);
+  };
+
+  const passwordInputHandler = inputText => {
+    setPassword(inputText);
+  };
+
+  const signUpHandler = () => {
+    dispatch(
+      signUpAction([
+        getFirstName,
+        getLastName,
+        getUserName,
+        getEmail,
+        getPassword,
+      ]),
+    );
+    navigation.navigate('Sign In');
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.pageTitle}>Create Your Lorem Ipsum Account</Text>
+        <Text style={styles.pageTitle}>Create your Lorem Ipsum Account</Text>
 
         <View style={styles.textInputContainer}>
-          <TextInput style={styles.textInput} placeholder="First Name" />
+          <TextInput
+            style={styles.textInput}
+            placeholder="First Name"
+            onChangeText={firstNameInputHandler}
+          />
         </View>
 
         <View style={styles.textInputContainer}>
-          <TextInput style={styles.textInput} placeholder="Last Name" />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Last Name"
+            onChangeText={lastNameInputHandler}
+          />
         </View>
 
         <View style={styles.textInputContainer}>
-          <TextInput style={styles.textInput} placeholder="Username" />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Username"
+            onChangeText={userNameInputHandler}
+          />
         </View>
 
         <View style={styles.textInputContainer}>
@@ -31,6 +88,7 @@ function SignUpPage() {
             style={styles.textInput}
             placeholder="Email"
             textContentType="emailAddress"
+            onChangeText={emailInputHandler}
           />
         </View>
 
@@ -40,15 +98,12 @@ function SignUpPage() {
             placeholder="Password"
             textContentType="password"
             secureTextEntry={true}
+            onChangeText={passwordInputHandler}
           />
         </View>
 
         <View style={styles.btnContainer}>
-          <Button
-            title="Sign Up"
-            // onPress={() => }
-            color="#9932CC"
-          />
+          <Button title="Sign Up" onPress={signUpHandler} color="#9932CC" />
         </View>
       </View>
     </ScrollView>

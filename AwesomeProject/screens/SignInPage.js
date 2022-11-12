@@ -5,9 +5,43 @@ import {
   Text,
   TextInput,
   Button,
+  Alert,
 } from 'react-native';
 
+import {useDispatch, useSelector} from 'react-redux';
+import {useState} from 'react';
+import {signInAction} from '../redux/signup';
+
 function SignInPage({navigation}) {
+  const emailList = useSelector(state => state.counter.email);
+  const passwordList = useSelector(state => state.counter.password);
+
+  const dispatch = useDispatch(); //   dispatch is used to call action from reducer
+
+  const [getEmail, setEmail] = useState('');
+  const [getPassword, setPassword] = useState('');
+
+  const emailInputHandler = inputText => {
+    setEmail(inputText);
+  };
+
+  const passwordInputHandler = inputText => {
+    setPassword(inputText);
+  };
+
+  function signInHandler() {
+    const userIndex = emailList.indexOf(getEmail);
+    if (userIndex >= 0 && passwordList[userIndex] == getPassword) {
+      dispatch(signInAction(userIndex));
+
+      navigation.navigate('Homepage');
+    } else {
+      Alert.alert('Log IN ERROR', 'Incorrect email or password', [
+        {text: 'OK', onPress: () => console.log('')},
+      ]);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.appTitle}>Welcome To Lorem Ipsum</Text>
@@ -17,6 +51,7 @@ function SignInPage({navigation}) {
           style={styles.textInput}
           placeholder="Email"
           textContentType="emailAddress"
+          onChangeText={emailInputHandler}
         />
       </View>
 
@@ -26,15 +61,12 @@ function SignInPage({navigation}) {
           placeholder="Password"
           textContentType="password"
           secureTextEntry={true}
+          onChangeText={passwordInputHandler}
         />
       </View>
 
       <View style={styles.btnContainer}>
-        <Button
-          title="Sign In"
-          // onPress={() => }
-          color="#ec0f80"
-        />
+        <Button title="Sign In" onPress={signInHandler} color="#ec0f80" />
       </View>
 
       <View style={styles.btnContainer}>
