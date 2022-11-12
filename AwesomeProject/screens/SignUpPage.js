@@ -12,13 +12,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Colours from '../Colours';
 import TxtInput from '../components/TxtInput';
-import {useDispatch} from 'react-redux';
-import {signUpAction} from '../redux/signup';
 import {useState} from 'react';
 
 function SignUpPage({navigation}) {
-  const dispatch = useDispatch(); //   dispatch is used to call action from reducer
-
   const [getFirstName, setFirstName] = useState('');
   const [getLastName, setLastName] = useState('');
   const [getUserName, setUserName] = useState('');
@@ -53,15 +49,6 @@ function SignUpPage({navigation}) {
       getEmail.length > 0 &&
       getPassword.length > 0
     ) {
-      dispatch(
-        signUpAction([
-          getFirstName,
-          getLastName,
-          getUserName,
-          getEmail,
-          getPassword,
-        ]),
-      );
       AsyncStorage.setItem(
         getEmail,
         JSON.stringify([

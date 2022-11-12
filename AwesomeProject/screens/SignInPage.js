@@ -1,6 +1,6 @@
 import {StyleSheet, View, StatusBar, Text, Button, Alert} from 'react-native';
 
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {useState} from 'react';
 import {signInAction} from '../redux/signup';
 import Colours from '../Colours';
@@ -9,9 +9,6 @@ import TxtInput from '../components/TxtInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function SignInPage({navigation}) {
-  const emailList = useSelector(state => state.register.email);
-  const passwordList = useSelector(state => state.register.password);
-
   const dispatch = useDispatch(); //   dispatch is used to call action from reducer
 
   const [getEmail, setEmail] = useState('');
@@ -26,7 +23,6 @@ function SignInPage({navigation}) {
   };
 
   function signInHandler() {
-    // const userIndex = emailList.indexOf(getEmail);
     AsyncStorage.getItem(getEmail, (err, result) => {
       const userDetails = JSON.parse(result);
       console.log(userDetails);
