@@ -2,12 +2,24 @@ import {StyleSheet, View, StatusBar, Text, Button, Alert} from 'react-native';
 import {useSelector} from 'react-redux';
 import Colours from '../Colours';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useState} from 'react';
+
 function HomePage({navigation}) {
-  const user_id = useSelector(state => state.register.user_id);
-  const firstname = useSelector(state => state.register.firstName[user_id]);
-  const lastname = useSelector(state => state.register.lastName[user_id]);
-  const username = useSelector(state => state.register.userName[user_id]);
-  const email = useSelector(state => state.register.email[user_id]);
+  const user_id = useSelector(state => state.register.user_login);
+
+  const [getFirstName, setFirstName] = useState('');
+  const [getLastName, setLastName] = useState('');
+  const [getUserName, setUserName] = useState('');
+  const [getEmail, setEmail] = useState('');
+
+  AsyncStorage.getItem(user_id, (err, result) => {
+    const userDetails = JSON.parse(result);
+    setFirstName(userDetails[0]);
+    setLastName(userDetails[1]);
+    setUserName(userDetails[2]);
+    setEmail(userDetails[3]);
+  });
 
   function signOutHandler() {
     Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
@@ -16,15 +28,13 @@ function HomePage({navigation}) {
     ]);
   }
 
-  // register is the name of the reducer in redux/store.js
-  // firstname is the property of that reducer found in redux/signup.js
   return (
     <View style={styles.container}>
-      <Text style={styles.pageTitle}>Welcome to Lorem Ipsum {username}</Text>
+      <Text style={styles.pageTitle}>Welcome to Lorem Ipsum {getUserName}</Text>
       <Text style={styles.detailsTitle}>Your details are as follows: </Text>
-      <Text style={styles.infoText}>First Name: {firstname}</Text>
-      <Text style={styles.infoText}>Last Name: {lastname}</Text>
-      <Text style={styles.infoText}>Email Address: {email}</Text>
+      <Text style={styles.infoText}>First Name: {getFirstName}</Text>
+      <Text style={styles.infoText}>Last Name: {getLastName}</Text>
+      <Text style={styles.infoText}>Email Address: {getEmail}</Text>
 
       <View style={styles.btnContainer}>
         <Button

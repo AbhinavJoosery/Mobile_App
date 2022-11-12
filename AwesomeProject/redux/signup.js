@@ -8,12 +8,12 @@ export const registerSlice = createSlice({
     userName: ['admin'],
     email: ['admin@gmail.com'],
     password: ['123'],
-    user_id: -1,
+    user_login: '',
   },
 
   reducers: {
     signInAction: (state, action) => {
-      state.user_id = action.payload;
+      state.user_login = action.payload;
     },
 
     signUpAction: (state, action) => {

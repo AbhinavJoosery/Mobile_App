@@ -8,6 +8,8 @@ import {
   Alert,
 } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import Colours from '../Colours';
 import TxtInput from '../components/TxtInput';
 import {useDispatch} from 'react-redux';
@@ -60,6 +62,17 @@ function SignUpPage({navigation}) {
           getPassword,
         ]),
       );
+      AsyncStorage.setItem(
+        getEmail,
+        JSON.stringify([
+          getFirstName,
+          getLastName,
+          getUserName,
+          getEmail,
+          getPassword,
+        ]),
+      );
+
       navigation.navigate('Sign In');
     } else {
       Alert.alert('Sign up ERROR', 'Please fill out all fields', [

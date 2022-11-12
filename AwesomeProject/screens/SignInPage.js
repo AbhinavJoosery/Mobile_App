@@ -6,6 +6,8 @@ import {signInAction} from '../redux/signup';
 import Colours from '../Colours';
 import TxtInput from '../components/TxtInput';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 function SignInPage({navigation}) {
   const emailList = useSelector(state => state.register.email);
   const passwordList = useSelector(state => state.register.password);
@@ -24,15 +26,19 @@ function SignInPage({navigation}) {
   };
 
   function signInHandler() {
-    const userIndex = emailList.indexOf(getEmail);
-    if (userIndex >= 0 && passwordList[userIndex] == getPassword) {
-      dispatch(signInAction(userIndex));
-      navigation.navigate('Homepage');
-    } else {
-      Alert.alert('Log IN ERROR', 'Incorrect email or password', [
-        {text: 'OK', onPress: () => console.log('')},
-      ]);
-    }
+    // const userIndex = emailList.indexOf(getEmail);
+    AsyncStorage.getItem(getEmail, (err, result) => {
+      const userDetails = JSON.parse(result);
+      console.log(userDetails);
+      if (result != null && userDetails[4] == getPassword) {
+        dispatch(signInAction(userDetails[3]));
+        navigation.navigate('Homepage');
+      } else {
+        Alert.alert('Log IN ERROR', 'Incorrect email or password', [
+          {text: 'OK', onPress: () => console.log('')},
+        ]);
+      }
+    });
   }
 
   return (
