@@ -5,7 +5,7 @@ import Colours from '../Colours';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useState} from 'react';
 
-function HomePage({navigation}) {
+function HomePage() {
   const user_id = useSelector(state => state.register.user_login);
 
   const [getFirstName, setFirstName] = useState('');
@@ -23,7 +23,10 @@ function HomePage({navigation}) {
 
   function signOutHandler() {
     Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
-      {text: 'Sign out', onPress: () => navigation.navigate('Sign In')},
+      {
+        text: 'Sign out',
+        onPress: () => AsyncStorage.setItem('IS_LOGGED_IN', '0'),
+      },
       {text: 'Cancel', onPress: () => console.log('ok')},
     ]);
   }

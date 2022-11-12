@@ -9,7 +9,7 @@ import TxtInput from '../components/TxtInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function SignInPage({navigation}) {
-  const dispatch = useDispatch(); //   dispatch is used to call action from reducer
+  const dispatch = useDispatch(); // dispatch is used to call action from reducer
 
   const [getEmail, setEmail] = useState('');
   const [getPassword, setPassword] = useState('');
@@ -28,7 +28,7 @@ function SignInPage({navigation}) {
       console.log(userDetails);
       if (result != null && userDetails[4] == getPassword) {
         dispatch(signInAction(userDetails[3]));
-        navigation.navigate('Homepage');
+        AsyncStorage.setItem('IS_LOGGED_IN', '1');
       } else {
         Alert.alert('Log IN ERROR', 'Incorrect email or password', [
           {text: 'OK', onPress: () => console.log('')},
